@@ -120,9 +120,13 @@ class Mammal(Vertebrate):
 
 
 class Primate(Mammal):
+    def __init__(self):
+        self._opposing_thumb = None
+
     @property
     def opposing_thumb(self):
         """ unique to primates """
+        return self._opposing_thumb
 
     def climb(self):
         """ opposing thumbs makes climbing easy """
@@ -130,12 +134,18 @@ class Primate(Mammal):
 
 
 class Human(Primate):
+    def __init__(self):
+        self._think = None
+
     @property
     def think(self):
         """ property of humans """
+        print("To be or not to be ?")
+        return self._think
 
     def program(self):
         """ write some software """
+        print("I'm going to ask chatGPT to do that exercise for me")
 
     def cook(self):
         """ use fire to soften food """
