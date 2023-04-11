@@ -1,5 +1,5 @@
 """
-WSGI config for Bank project.
+WSGI config for Bank_project project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
