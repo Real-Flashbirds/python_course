@@ -69,7 +69,6 @@ def notify_branches():
                 print(f'name: {client[0]}    balance: {client[1]}')
 
 
-
 def age(birthday):
     today = datetime.date.today()
     years = today.year - birthday.year
