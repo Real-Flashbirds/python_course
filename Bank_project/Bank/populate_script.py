@@ -8,9 +8,14 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Bank_project.Bank.settings")
 import django
 django.setup()
 
+#Only works like this in script
 from banks.models import Client, Bank, Branch, Account
 
+
 def populate():
+    """
+    populate the database. Be careful to only do it once as growth is exponential
+    """
     b = Bank(name='RABO', number=1, country='NL')
     b.save()
     br = Branch(bank=b, city='Eindhoven')
