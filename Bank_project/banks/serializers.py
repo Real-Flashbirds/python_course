@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from Bank_project.banks.models import (Bank, Branch, Client, Account, )
+from banks.models import (Bank, Branch, Client, Account, )
 
 
 class BankSerializer(serializers.ModelSerializer):
