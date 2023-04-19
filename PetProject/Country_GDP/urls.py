@@ -17,4 +17,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path(r'testBar', views.TestView.as_view(), name='Test View'),
     path(r'testView', views.IndexView.as_view(), name='Test View'),
+    path(r'pickJsonData/<str:country>/<int:start_year>/<int:end_year>/', views.PickJsonDataView.as_view(), name='Country GDP visualized'),
+    path(r'GDPDataView/<str:country>/<int:start_year>/<int:end_year>/', views.GDPDataView.as_view(), name='Country GDP visualized')
 ]

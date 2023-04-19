@@ -108,6 +108,56 @@ class TestView(APIView):
 
     JsonResponse = json_response
 
+
 class IndexView(APIView):
     def get(self, request, *args, **kwargs):
         return HttpResponse(content=open("./templates/index.html").read())
+
+
+class GDPDataView(APIView):
+    def get(self, request, *args, **kwargs):
+        return render(request, "GDPView.html", kwargs)
+
+
+class PickJsonDataView(APIView):
+    def get(self, request, *args, **kwargs):
+        country = kwargs["country"]
+        start_year = kwargs["start_year"]
+        end_year = kwargs["end_year"]
+        bar_graph = self.create_graph(country, start_year, end_year)
+        my_json = json.loads(bar_graph)
+        return self.json_response(my_json)
+
+    def create_graph(self, country, start_year, end_year) -> Bar:
+        gdps = FieldGDP.objects.all()
+        c = Bar().set_global_opts(title_opts=opts.TitleOpts(title=f"{country} GDP from {start_year} to {end_year}"))
+        c.add_xaxis([str(x) for x in range(start_year, end_year+1)])
+        gdp_list = []
+        for year in range(start_year, end_year+1):
+            for gdp in gdps:
+                if gdp.year == year and gdp.country.name == country:
+                    the_gdp = gdp.GDP.number
+                    gdp_list.append(the_gdp)
+        c.add_yaxis(country, gdp_list)
+        return c.dump_options_with_quotes()
+
+        # Create your views here.
+
+    def response_as_json(self, data):
+        json_str = json.dumps(data)
+        response = HttpResponse(
+            json_str,
+            content_type="application/json",
+        )
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
+
+    def json_response(self, data, code=200):
+        data = {
+            "code": code,
+            "msg": "success",
+            "data": data,
+        }
+        return self.response_as_json(data)
+
+    JsonResponse = json_response
