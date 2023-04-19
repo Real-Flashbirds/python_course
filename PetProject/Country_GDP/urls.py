@@ -15,4 +15,6 @@ router.register(r'FieldGDP', views.FieldGDPViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'testBar', views.TestView.as_view(), name='Test View'),
+    path(r'testView', views.IndexView.as_view(), name='Test View'),
 ]
