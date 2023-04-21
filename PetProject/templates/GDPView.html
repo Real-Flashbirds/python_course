@@ -21,7 +21,7 @@
         function fetchData() {
             $.ajax({
                 type: "GET",
-                url: "http://127.0.0.1:8000/pickJsonData/{country}/{start_year}/{end_year}",
+                url: "http://127.0.0.1:8000/pickJsonData/{{country}}/{{start_year}}/{{end_year}}",
                 dataType: 'json',
                 success: function (result) {
                     chart.setOption(result.data);

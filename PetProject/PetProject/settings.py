@@ -57,7 +57,7 @@ ROOT_URLCONF = 'PetProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,4 +130,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
